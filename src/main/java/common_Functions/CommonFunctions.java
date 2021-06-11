@@ -23,6 +23,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import page_Objects.Home_Page;
 import page_Objects.Login_Page;
 
@@ -56,9 +57,11 @@ public class CommonFunctions {
 
 		LoadProperty();
 		String url = properties.getProperty("url");
-		String driverLocation = properties.getProperty("driverlocation");
+		//String driverLocation = properties.getProperty("driverlocation");
 
-		System.setProperty("Webdriver.chrome.driver", driverLocation);
+		WebDriverManager.chromedriver().setup();
+		
+		/* System.setProperty("Webdriver.chrome.driver", driverLocation); */
 		driver = new ChromeDriver();
 		driver.get(url);
 		driver.manage().window().maximize();
